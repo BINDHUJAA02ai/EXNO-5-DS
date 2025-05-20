@@ -133,25 +133,42 @@ plt.show()
 ![325090217-493ffb54-af9e-41e4-ac31-fb0b49ff7811](https://github.com/user-attachments/assets/74dfe2c6-fd10-4896-acf7-dca375f2b9fc)
 ```
 import matplotlib.pyplot as plt
+x1=[1,2,3,4,5,6,7,8,9,10]
+y1=[2,4,5,7,6,8,9,11,12,12]
+plt.scatter(x1,y1,label='stars',color='green',marker='*',s=30)
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.title('Scatter Plot')
+plt.legend()
+plt.show()
+```
+![441179889-a95c850a-9a43-4d4f-beb1-355d387f178d](https://github.com/user-attachments/assets/354ae648-877d-4b24-9088-c085a7135a49)
+
+```
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 x=np.arange(0,10)
 y=np.arange(11,21)
 x
 ```
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 ```
 y
 ```
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+![378767321-95e2f5f7-7125-4fd2-8ded-55dcea942673](https://github.com/user-attachments/assets/2bf87a2e-7a14-4d52-8366-2e235eea06c0)
+
+
 ```
 plt.scatter(x,y,c='r')
 plt.xlabel('X axis')
 plt.ylabel('Y axis')
-plt.title('Graph in 2D')
+plt.title('Graphs in 2D')
 plt.savefig('Test.png')
 ```
-![325090676-8acee8db-9dd0-4ae0-91d4-42876ae11b9d](https://github.com/user-attachments/assets/cf47317c-afd6-4b65-807e-ae7bb6a3a533)
+
+![378767493-9ff66837-2f4d-4f96-8e45-ebaab5213302](https://github.com/user-attachments/assets/0370e832-9e1a-4741-af93-85533b739ac1)
+
 
 ```
 y=x*x
@@ -164,11 +181,24 @@ plt.xlabel('X axis')
 plt.ylabel('Y axis')
 plt.title('2d Diagram')
 ```
-![325091038-29adeffc-0967-434b-80e4-d78e9114a2cc](https://github.com/user-attachments/assets/1000d1e3-58a6-43eb-8f7e-858247daaa4f)
+![378767736-e9c12efc-f038-4e53-a155-3b7fc51a4764](https://github.com/user-attachments/assets/e5ecbe42-0206-48c6-b36f-d745a52d155a)
+
+```
+plt.subplot(2,2,1)
+plt.plot(x,y,'r--')
+plt.subplot(2,2,2)
+plt.plot(x,y,'g*--')
+plt.subplot(2,2,3)
+plt.plot(x,y,'bo')
+plt.subplot(2,2,4)
+plt.plot(x,y,'go')
+```
+![378767847-806d0ac3-9926-4f8c-b482-f0e97558783d](https://github.com/user-attachments/assets/1e577b2d-2c0f-4d39-90bb-89b403961e5b)
 ```
 np.pi
 ```
-3.141592653589793
+![378768009-7360eaa6-64c1-49a9-bf0c-73956c3453d7](https://github.com/user-attachments/assets/24bafbfd-2ca9-408e-ac49-ae58f2e03f30)
+
 ```
 x=np.arange(0,4*np.pi,0.1)
 y=np.sin(x)
@@ -176,7 +206,8 @@ plt.title("sine wave form")
 plt.plot(x,y)
 plt.show()
 ```
-![325091355-7c877f63-07bc-4b43-8c1f-630b615a8ba8](https://github.com/user-attachments/assets/1e1d4ad5-21bb-4ccf-bcdf-3c9ade370d61)
+![378768142-4d97f6e3-9b45-49d1-8b10-e79b4ad93b4e](https://github.com/user-attachments/assets/0ddc7f9d-d433-43c5-9a2f-026fb3572379)
+
 ```
 import matplotlib.pyplot as plt
 import numpy as np
@@ -191,25 +222,78 @@ plt.plot(x,y2,color="black")
 plt.legend(['y1','y2'])
 plt.show()
 ```
-![325091527-a70aa17c-2503-429f-a59f-6defc86c99b3](https://github.com/user-attachments/assets/3f53b4e4-1bb5-4ce5-ac4f-22692f0f8ee6)
+![378768272-2971cf24-daa3-4e86-9eb1-053e7fda2ff6](https://github.com/user-attachments/assets/a85116d3-e441-4918-972d-28fe57d21274)
+
 ```
+x=[1,2,3,4,5]
+y1=[10,12,14,16,18]
+y2=[5,7,9,11,13]
+y3=[2,4,6,8,10]
+plt.stackplot(x,y1,y2,y3,labels=['Line1','Line2','Line3'])
+plt.legend(loc='upper left')
+plt.title('Stacked Line Chart')
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+
+```
+![378768391-48ae1fcc-d6bf-4b5a-8229-5fc4ea0894de](https://github.com/user-attachments/assets/b303105a-d733-490d-95e0-dc3a13ece1f3)
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.interpolate import make_interp_spline
+x = np.array([1,2,3,4,5,6,7,8,9,10])
+y = np.array([2,4,5,6,7,8,8,10,11,12])
+spl=make_interp_spline(x,y)
+x_smooth=np.linspace(x.min(),x.max(),100)
+y_smooth=spl(x_smooth)
+plt.plot(x,y,'o',label='data')
+plt.plot(x_smooth,y_smooth,'-',label='spline')
+plt.legend()
+plt.show()
+```
+![378768488-c8ff9b9d-1557-4b6e-bc30-a9e59593ae57](https://github.com/user-attachments/assets/1d659cd5-643e-4675-b4bd-f45c2224d676)
+
+```
+import matplotlib.pyplot as plt
+values=[5,6,3,7,2]
+names=['A','B','C','D','E']
+plt.bar(names,values,color='green')
+plt.show()
+```
+![378768706-1ed34b0f-18cb-45fe-b185-ecc7af85b3f2](https://github.com/user-attachments/assets/aba83960-0784-4bde-8e10-f8913a937dcf)
+
+
+
+```
+import matplotlib.pyplot as plt
+values=[5,6,3,7,2]
+names=['A','B','C','D','E']
+plt.barh(names,values,color='yellowgreen')
+plt.show()
+```
+![378768829-90ce15de-fa5a-430f-8b1c-f4f8e3f2b24f](https://github.com/user-attachments/assets/5ec099e4-fb16-406c-bf33-52e90151d6e5)
+
+```
+
 import matplotlib.pyplot as plt
 height=[10,24,36,40,5]
 names=['one','two','three','four','five']
 c1=['red','green']
 c2=['b','g']
-plt.bar(names,height,width=0.8,color=c1)
-plt.xlabel('x-axis')
-plt.ylabel('y-axis')
-plt.title('My bar chart!')
+plt.bar(names, height, width=0.8, color=c1)
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
 plt.show()
 ```
-![325091635-8b3b1d07-f746-42cd-818e-cf9ec41b997c](https://github.com/user-attachments/assets/1cde9829-db3b-4266-bd7c-30fe296d30cd)
+![441181029-8f1e82c6-7f01-411a-98a9-ef5fa086d9d9](https://github.com/user-attachments/assets/ab1e5f38-292e-4b4e-85fc-02650de07b3b)
+
 ```
 x=[2,8,10]
 y=[11,16,9]
 x2=[3,9,11]
-y2=[6,15,11]
+y2=[6,15,7]
 plt.bar(x,y,color='r')
 plt.bar(x2,y2,color='g')
 plt.title('Bar graph')
@@ -217,21 +301,26 @@ plt.ylabel('Y axis')
 plt.xlabel('X axis')
 plt.show()
 ```
-![325091894-bfb1c2f6-a934-456c-8996-0443342dabeb](https://github.com/user-attachments/assets/88bb2d94-95b4-4b4d-b97c-6f5989fceee7)
+![378769079-cb5855a2-a611-4cd3-b7e9-26b856920e92](https://github.com/user-attachments/assets/f2f3b659-60fb-4863-8a97-fd462a1ecb23)
+
 ```
 import matplotlib.pyplot as plt
-ages=[2,5,70,40,30,45,50,45,50,45,43,40,44,60,7,13,57,18,90,77,32,21,20,40]
+ages=[2,5,70,40,30,45,50,45,43,40,44,60,7,13,57,18,90,77,32,21,20,40]
 range=(0,100)
 bins=10
 plt.hist(ages,bins,range,color='green',histtype='bar',rwidth=0.8)
 plt.xlabel('age')
-plt.ylabel('No.of people')
-plt.title('My histogram')
+plt.ylabel('No. of people')
 plt.show()
 ```
-![325092069-4553d48d-5135-498b-8298-35bde4c5bd1a](https://github.com/user-attachments/assets/89dcb850-784a-4e4a-a90f-93da274ccf53)
-
-![325092069-4553d48d-5135-498b-8298-35bde4c5bd1a](https://github.com/user-attachments/assets/b0c2abb2-0fdb-4558-a099-9e639af4229e)
+![441181223-86073fcd-eb4a-4dc7-bb13-c40cc36ebe53](https://github.com/user-attachments/assets/38875ee9-79e8-447c-9fcf-aaadc19a6ba2)
+```
+import matplotlib.pyplot as plt
+x=[2,1,6,4,2,4,8,9,4,2,4,10,6,4,5,7,7,3,2,7,5,3,5,9,2,1]
+plt.hist(x,bins=10,color='blue',alpha=0.5)
+plt.show()
+```
+![378769357-3b6a3ab4-fae3-4001-97b6-c93677c2c354](https://github.com/user-attachments/assets/c003c535-5284-487b-83c3-30b18b09ea0b)
 ```
 import matplotlib.pyplot as plt
 import numpy as np
@@ -239,37 +328,37 @@ np.random.seed(0)
 data=np.random.normal(loc=0,scale=1,size=100)
 data
 ```
-![325092285-5ee92819-726b-4314-8755-6fa9c4a27b4d](https://github.com/user-attachments/assets/c1d2a0ad-4e71-4951-9fd7-27f6f01de520)
+![378769487-ba198b64-b050-489f-8e1f-21a30633bff5](https://github.com/user-attachments/assets/2f68697a-9f00-447c-b3bd-6ecc6eb5ffc0)
 ```
 fig,ax=plt.subplots()
 ax.boxplot(data)
 ax.set_xlabel('Data')
 ax.set_ylabel('Values')
-ax.set_title('Box plot'
+ax.set_title('Box Plot')
 ```
-![325092388-fa0d26b7-f04b-45a1-8879-b4165a717fb0](https://github.com/user-attachments/assets/5954ca72-26f6-4ae8-b17d-81f702c0bb9c)
+![378769591-ddcd57f8-b28f-4f2b-8a9f-20acbb22d4f9](https://github.com/user-attachments/assets/d89115fa-62db-4021-8fc4-3c5378755047)
+```
+import matplotlib.pyplot as plt
+activities=['eat','sleep','work','play']
+slices=[3,7,8,6]
+colors=['r','y','g','b']
+plt.pie(slices,labels=activities,colors=colors,startangle=90,shadow=True,explode=(0,0,0.1,0),radius=1.2,autopct='%1.1f%%')
+plt.legend()
+plt.show()
+```
+![378769725-b3ee428c-6798-4fc4-b926-d4b5d0f5face](https://github.com/user-attachments/assets/986a9356-d969-446c-afd7-b93b9ec58293)
+
 ```
 labels='Python','C++','Ruby','Java'
 sizes=[215,130,245,210]
 colors=['gold','yellowgreen','lightcoral','lightskyblue']
 explode=(0,0.4,0,0.5)
-plt.pie(sizes,explode=explode,labels=labels,colors=colors,
-autopct='%1.1f%%',shadow=True)
+
+plt.pie(sizes,explode=explode,labels=labels,colors=colors,autopct="%1.1f%%",shadow=True)
 plt.axis('equal')
 plt.show()
-![325092569-d561d300-95bc-4ce4-bde3-7b983c9c1576](https://github.com/user-attachments/assets/e80fe9d4-c793-4a79-b169-d1e677357fac)
 ```
-activities=['eat','sleep','work','play']
-slices=[3,7,8,6]
-colors=['r','y','g','b']
-plt.pie(slices,labels=activities,colors=colors,
-        startangle=90,shadow=True,explode=(0,0,0.1,0),
-        radius=1.2,autopct='%1.1f%%')
-plt.legend()
-```
-![325092667-276099eb-e297-47a1-a8d9-aa39183c8464](https://github.com/user-attachments/assets/a8967cbc-f2b5-4642-bd47-6e3402db3690)
-
-
+![378769820-e3455128-80c6-4a10-bd16-7015cae0c291](https://github.com/user-attachments/assets/010abbce-3c08-4b6d-a4d2-8c8bcfc9bd79)
 
 
 
